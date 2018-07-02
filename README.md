@@ -9,11 +9,17 @@
 
 3. Depends on the number of Launchpad connecting to PC, create same number of database and users in InfluxDB. For example, if there are 2 Launchpad, in the influx database sql command line (terminal), type commands as following:
 `> CREATE USER "ssns0" WITH PASSWORD 'ssns'
+
 > CREATE DATABASE "ssns0"
+
 > GRANT ALL ON ssns0 TO ssns0
-> CREATE USER "ssns1" WITH PASSWORD 'ssns'
+
+> CREATE USER "ssns1" WITH PASSWORD
+
 > CREATE DATABASE "ssns1"
+
 > GRANT ALL ON ssns1 TO ssns1`
+
 If you have 3 launchpads, then just create database and user with number 2, and so on.
 
 4. Inside the "lib" folder, there are libraries that are required, remember to add them to IDE if you want to change or develop more with source code.

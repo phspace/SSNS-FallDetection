@@ -14,7 +14,7 @@
 
 > GRANT ALL ON ssns0 TO ssns0
 
-> CREATE USER "ssns1" WITH PASSWORD "ssns"
+> CREATE USER "ssns1" WITH PASSWORD 'ssns'
 
 > CREATE DATABASE "ssns1"
 

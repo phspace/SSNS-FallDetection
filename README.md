@@ -8,7 +8,7 @@
 2. Download and run InfluxDB database program
 
 3. Depends on the number of Launchpad connecting to PC, create same number of database and users in InfluxDB. For example, if there are 2 Launchpad, in the influx database sql command line (terminal), type commands as following:
-`> CREATE USER "ssns0" WITH PASSWORD 'ssns'
+> CREATE USER "ssns0" WITH PASSWORD 'ssns'
 
 > CREATE DATABASE "ssns0"
 
@@ -18,7 +18,7 @@
 
 > CREATE DATABASE "ssns1"
 
-> GRANT ALL ON ssns1 TO ssns1`
+> GRANT ALL ON ssns1 TO ssns1
 
 If you have 3 launchpads, then just create database and user with number 2, and so on.
 

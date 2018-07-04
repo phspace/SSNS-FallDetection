@@ -13,7 +13,8 @@ public class AcceGraph extends RTGraph {
     public AcceGraph(int conn) {
         this.conn = conn;
         acceGraph[conn] = new LinkedBlockingQueue<>();
-        init("Accelerometer Data : " + conn, -1, 9, 0.5);
+        init("Accelerometer ID number " + conn, -1, 9, 0.5);
+        yAxis.setLabel("Accelerometer in G");
     }
 
     private class AddToQueue implements Runnable {

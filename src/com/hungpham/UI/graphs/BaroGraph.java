@@ -13,7 +13,8 @@ public class BaroGraph extends RTGraph {
     public BaroGraph(int conn) {
         this.conn = conn;
         baroGraph[conn] = new LinkedBlockingQueue<>();
-        init("Barometer Data : " + conn, 9950, 10050, 5);
+        init("Barometer ID number " + conn, 9950, 10050, 5);
+        yAxis.setLabel("Barometer in Pa");
     }
 
     private class AddToQueue implements Runnable {

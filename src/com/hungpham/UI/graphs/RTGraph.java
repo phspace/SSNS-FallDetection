@@ -53,7 +53,7 @@ public abstract class RTGraph {
         lineChart.setAnimated(false);
         lineChart.setId("SSNSLiveChart");
         lineChart.setTitle(nameChart);
-        lineChart.setPrefSize(700, 450);
+        lineChart.setPrefSize(600, 400);
 
         //-- Chart Series
         series = new Series<Number, Number>();

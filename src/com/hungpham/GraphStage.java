@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -23,6 +24,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.hungpham.Main.firstTimeOpen;
+import static com.hungpham.UI.MainScene.operatingDevicesNumber;
 
 public class GraphStage extends Application{
     public static volatile String command = "";
@@ -77,12 +79,19 @@ public class GraphStage extends Application{
             }
         });
 
-        AcceGraph[] acceGraph = new AcceGraph[2];
-        BaroGraph[] baroGraph = new BaroGraph[2];
-        LineChart<Number, Number>[] lc = new LineChart[2];
-        LineChart<Number, Number>[] lc1 = new LineChart[2];
+        AcceGraph[] acceGraph = new AcceGraph[operatingDevicesNumber];
+        BaroGraph[] baroGraph = new BaroGraph[operatingDevicesNumber];
+        LineChart<Number, Number>[] lc = new LineChart[operatingDevicesNumber];
+        LineChart<Number, Number>[] lc1 = new LineChart[operatingDevicesNumber];
+        FlowPane graphs = new FlowPane();
+        GridPane[] graph = new GridPane[operatingDevicesNumber];
 
-        for (int i = 0; i < 2; i++) {
+        ScrollPane root = new ScrollPane();
+
+        GridPane gridPane = new GridPane();
+        gridPane.add(stopButton,0,0);
+
+        for (int i = 0; i < operatingDevicesNumber; i++) {
             acceGraph[i] = new AcceGraph(i);
             baroGraph[i] = new BaroGraph(i);
 
@@ -91,15 +100,21 @@ public class GraphStage extends Application{
 
             acceGraph[i].executeGraph();
             baroGraph[i].executeGraph();
+
+            graph[i] = new GridPane();
+            graph[i].add(lc[i], 0, 0);
+            graph[i].add(lc1[i], 1, 0);
+
+            if (i == 0) graphs.getChildren().add(gridPane);
+            graphs.getChildren().add(graph[i]);
         }
 
-        GridPane gridPane = new GridPane();
-        gridPane.add(stopButton,0,0);
+        root.setFitToHeight(true);
+        root.setFitToHeight(true);
 
-        FlowPane root = new FlowPane();
-        root.getChildren().addAll(lc[0], lc1[0], gridPane, lc[1], lc1[1]);
+        root.setContent(graphs);
 
-        Scene scene = new Scene(root, 1600, 900);
+        Scene scene = new Scene(root, 1280, 900);
 
         primaryStage.setTitle("SSNS Project");
         primaryStage.setScene(scene);

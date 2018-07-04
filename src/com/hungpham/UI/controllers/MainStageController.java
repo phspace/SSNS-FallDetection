@@ -193,7 +193,7 @@ public class MainStageController {
             serialCommands[0].add("0131FE0119");
             Thread.sleep(200);
             serialCommands[0].add("0104FE03030100");
-            Thread.sleep(30000);
+            Thread.sleep(20000);
             for (String stk : stkMacSet) {
                 sensortagList.add(new Item("SensorTag " + stk));
             }

@@ -2,7 +2,7 @@ package com.hungpham.Controller;
 
 import com.hungpham.Algorithms.AngleChanged;
 import com.hungpham.Algorithms.PressureBased;
-import com.hungpham.GraphStage;
+import com.hungpham.UI.controllers.GraphStage;
 
 import java.util.concurrent.LinkedBlockingQueue;
 

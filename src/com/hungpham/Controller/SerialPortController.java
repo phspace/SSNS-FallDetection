@@ -1,7 +1,7 @@
 package com.hungpham.Controller;
 
 import com.hungpham.Data.SerialData;
-import com.hungpham.GraphStage;
+import com.hungpham.UI.controllers.GraphStage;
 import com.hungpham.Utils.Utils;
 import gnu.io.*;
 

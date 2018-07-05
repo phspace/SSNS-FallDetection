@@ -1,6 +1,6 @@
 package com.hungpham.Controller;
 
-import com.hungpham.GraphStage;
+import com.hungpham.UI.controllers.GraphStage;
 
 public class AlgorithmsRunner implements Runnable{
 

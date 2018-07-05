@@ -1,7 +1,6 @@
 package com.hungpham.UI.controllers;
 
 import com.hungpham.Controller.SerialPortController;
-import com.hungpham.GraphStage;
 import com.hungpham.UI.MainScene;
 import javafx.application.Application;
 import javafx.application.Platform;

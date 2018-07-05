@@ -1,6 +1,6 @@
 package com.hungpham.UI;
 
-import com.hungpham.GraphStage;
+import com.hungpham.UI.controllers.GraphStage;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import jssc.SerialPortList;

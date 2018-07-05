@@ -1,6 +1,7 @@
-package com.hungpham;
+package com.hungpham.UI.controllers;
 
 import com.hungpham.Controller.SerialPortController;
+import com.hungpham.FunctionsWrapper;
 import com.hungpham.UI.graphs.AcceGraph;
 import com.hungpham.UI.graphs.BaroGraph;
 import javafx.application.Application;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.hungpham.Controller.AlgorithmsController.algorithmsQueue;
 import static com.hungpham.Main.firstTimeOpen;
 import static com.hungpham.UI.MainScene.operatingDevicesNumber;
 
@@ -62,6 +64,9 @@ public class GraphStage extends Application{
                 SerialPortController.mode = 0;
                 URL url = null;
                 Parent root = null;
+                for (int i = 0; i < operatingDevicesNumber; i ++) {
+                    algorithmsQueue[i].clear();
+                }
                 try {
                     url = new File("resources/fxmls/MainStage.fxml").toURL();
                     root = FXMLLoader.load(url);

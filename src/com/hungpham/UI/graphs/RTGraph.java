@@ -55,6 +55,8 @@ public abstract class RTGraph {
         lineChart.setTitle(nameChart);
         lineChart.setPrefSize(600, 400);
 
+        xAxis.setLabel("Number of Samples");
+
         //-- Chart Series
         series = new Series<Number, Number>();
         series.setName(nameChart);

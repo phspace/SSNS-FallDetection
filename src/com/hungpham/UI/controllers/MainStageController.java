@@ -179,6 +179,7 @@ public class MainStageController {
     }
 
     private void generateHostandSensors() {
+        sensortagList.clear();
         try {
             serialCommands[0].add("01030C00");
             Thread.sleep(200);

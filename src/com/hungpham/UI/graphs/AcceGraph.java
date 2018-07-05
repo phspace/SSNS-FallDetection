@@ -3,12 +3,14 @@ package com.hungpham.UI.graphs;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import static com.hungpham.UI.MainScene.operatingDevicesNumber;
+
 public class AcceGraph extends RTGraph {
     private AddToQueue addToQueue;
 
     private int conn;
 
-    public static volatile LinkedBlockingQueue<String>[] acceGraph = new LinkedBlockingQueue[2];
+    public static volatile LinkedBlockingQueue<String>[] acceGraph = new LinkedBlockingQueue[operatingDevicesNumber];
 
     public AcceGraph(int conn) {
         this.conn = conn;

@@ -102,10 +102,7 @@ public class FunctionsWrapper {
                         serialCommands[i].add("010AFE03000013");
                     }
 
-                    String bip = "fall1.m4a";
-                    Media hit = new Media(new File(bip).toURI().toString());
-                    MediaPlayer mediaPlayer = new MediaPlayer(hit);
-                    mediaPlayer.play();
+
                     JOptionPane.showMessageDialog(new Frame(),
                             "*!*!*!*!*!*!*! Fall Detected *!*!*!*!*!*!*!");
                     Platform.exit();

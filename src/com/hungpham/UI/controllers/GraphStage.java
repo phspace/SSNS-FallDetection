@@ -16,6 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -25,10 +27,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.hungpham.Controller.AlgorithmsController.algorithmsQueue;
+import static com.hungpham.Controller.AlgorithmsController.voting;
 import static com.hungpham.Main.firstTimeOpen;
 import static com.hungpham.UI.MainScene.operatingDevicesNumber;
 
-public class GraphStage extends Application{
+public class GraphStage extends Application {
     public static volatile String command = "";
     public static volatile int mode = 0;
 
@@ -53,10 +56,13 @@ public class GraphStage extends Application{
         RunBackground runBackground = new RunBackground();
         runBackground.start();
 
-        Button stopButton = new Button("Back to Main Page");
-        stopButton.setMinSize(200, 50);
+        SoundPlay soundPlay = new SoundPlay();
+        soundPlay.start();
 
-        stopButton.setOnAction(new EventHandler<ActionEvent>() {
+        Button backToMainPage = new Button("Back to Main Page");
+        backToMainPage.setMinSize(200, 50);
+
+        backToMainPage.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 command = "stop";
@@ -64,7 +70,7 @@ public class GraphStage extends Application{
                 SerialPortController.mode = 0;
                 URL url = null;
                 Parent root = null;
-                for (int i = 0; i < operatingDevicesNumber; i ++) {
+                for (int i = 0; i < operatingDevicesNumber; i++) {
                     algorithmsQueue[i].clear();
                 }
                 try {
@@ -76,7 +82,7 @@ public class GraphStage extends Application{
                     e1.printStackTrace();
                 }
 
-                Stage stage = (Stage)stopButton.getScene().getWindow();
+                Stage stage = (Stage) backToMainPage.getScene().getWindow();
                 stage.setScene(new Scene(root, 800, 600));
                 stage.setMinHeight(600);
                 stage.setMinWidth(800);
@@ -94,7 +100,7 @@ public class GraphStage extends Application{
         ScrollPane root = new ScrollPane();
 
         GridPane gridPane = new GridPane();
-        gridPane.add(stopButton,0,0);
+        gridPane.add(backToMainPage, 0, 0);
 
         for (int i = 0; i < operatingDevicesNumber; i++) {
             acceGraph[i] = new AcceGraph(i);
@@ -138,6 +144,25 @@ public class GraphStage extends Application{
         @Override
         public void run() {
             FunctionsWrapper.startEverything();
+        }
+    }
+
+    static class SoundPlay extends Thread {
+        @Override
+        public void run() {
+            while (true) {
+                if (voting[1] == 2 || voting[0] == 2) {
+                    try {
+                        String bip = "fall1.m4a";
+                        Media hit = new Media(new File(bip).toURI().toString());
+                        MediaPlayer mediaPlayer = new MediaPlayer(hit);
+                        mediaPlayer.play();
+                    } catch (Exception e) {
+
+                    }
+                    break;
+                }
+            }
         }
     }
 }

@@ -30,7 +30,7 @@ public class AlgorithmsController implements Runnable {
                 Algorithm3 = new AngleChanged(conn, 2.5, 0.4);
                 algorithmsQueue[conn].add(Algorithm3);
                 algorithmsQueue[conn].add(pressureBased);
-                Thread.sleep(100);
+                Thread.sleep(300);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

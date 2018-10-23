@@ -1,6 +1,7 @@
 package com.hungpham.UI;
 
 import com.hungpham.UI.controllers.GraphStage;
+import gnu.io.CommPortIdentifier;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import jssc.SerialPortList;
@@ -36,20 +37,58 @@ public class MainScene extends Application {
 
     }
 
-    public void checkPort() {
-        String[] portNames = SerialPortList.getPortNames();
-
-        if (portNames.length == 0) {
-            System.out.println("There are no serial-ports.");
+    private String getPortTypeName ( int portType ) {
+        switch ( portType )
+        {
+            case CommPortIdentifier.PORT_I2C:
+                return "I2C";
+            case CommPortIdentifier.PORT_PARALLEL:
+                return "Parallel";
+            case CommPortIdentifier.PORT_RAW:
+                return "Raw";
+            case CommPortIdentifier.PORT_RS485:
+                return "RS485";
+            case CommPortIdentifier.PORT_SERIAL:
+                return "Serial";
+            default:
+                return "unknown type";
         }
+    }
 
-        for (int i = 0; i < portNames.length; i++) {
-            int portLastNumber = Integer.parseInt(portNames[i].substring(portNames[i].length() - 1));
-            if (portLastNumber % 2 > 0) {
-                portsList.add(portNames[i]);
-                System.out.println(portNames[i]);
+    public void checkPort() {
+        java.util.Enumeration<CommPortIdentifier> portEnum = CommPortIdentifier.getPortIdentifiers();
+        while ( portEnum.hasMoreElements() )
+        {
+            CommPortIdentifier portIdentifier = portEnum.nextElement();
+            switch ( portIdentifier.getPortType() ) {
+                case CommPortIdentifier.PORT_SERIAL:
+                    if (portIdentifier.getName().contains("/dev/tty.usbmodem") || portIdentifier.getName().contains("COM")) {
+                        int portLastNumber = Integer.parseInt(portIdentifier.getName().substring(portIdentifier.getName().length() - 1));
+                        if (portLastNumber % 2 > 0) {
+                            portsList.add(portIdentifier.getName());
+                            System.out.println(portIdentifier.getName());
+                        }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
+
+
+
+
+//        if (portNames.length == 0) {
+//            System.out.println("There are no serial-ports.");
+//        }
+//
+//        for (int i = 0; i < portNames.length; i++) {
+//            int portLastNumber = Integer.parseInt(portNames[i].substring(portNames[i].length() - 1));
+//            if (portLastNumber % 2 > 0) {
+//                portsList.add(portNames[i]);
+//                System.out.println(portNames[i]);
+//            }
+//        }
     }
 
     public void checkReadyOperating() {
